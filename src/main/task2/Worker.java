@@ -1,8 +1,8 @@
 package main.task2;
 
 public class Worker extends Employee{
-    public Worker(String name, String surName, double salary) {
-        super(name, surName, salary);
+    public Worker(String name, String suerName, double salary) {
+        super(name, suerName, salary);
     }
 
     @Override
@@ -10,8 +10,4 @@ public class Worker extends Employee{
         return getSalary();
     }
 
-    @Override
-    public String toString(){
-        return String.format("%s - %s - %.1f", getSurName(), getName(), getSalary());
-    }
 }

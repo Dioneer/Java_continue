@@ -1,30 +1,32 @@
 package main.task1;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Cat extends Animal{
-
-    private static int counter=0;
-
-    public static int getCounter() {
-        return counter;
-    }
-
+    private static final AtomicInteger count= new AtomicInteger();
     public Cat(String name, int maxRun, int maxSwim) {
         super(name, maxRun, maxSwim);
     }
     public Cat(String name) {
-        this(name, 200, 500);
+        super(name, 200, 0);
     }
-
     {
-        counter++;
+        count.getAndIncrement();
+    }
+    @Override
+    public void swim(int ditance){
+        System.out.println("Cat "+getName()+" can't swim");
     }
 
-    @Override
-    public void swim(int distance) {
-        System.out.println(this.getClass().getSimpleName() + " can't swim");
+    public static int getCount() {
+        return count.get();
     }
     @Override
-    public String toString(){
-        return String.format("class cat %s %d %d", super.getName(), super.getMaxRun(), super.getMaxSwim());
+    public String toString() {
+        return getClass().getSimpleName()+"{" +
+                "name='" + getName()+ '\'' +
+                ", maxRun=" + getMaxRun() +
+                ", maxSwim=" + getMaxSwim() +
+                '}';
     }
 }
